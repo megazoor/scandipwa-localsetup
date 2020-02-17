@@ -193,7 +193,7 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
         > **Note**: the requests to `/graphql` will still fail, you need to wait until the `app` container starts. See instruction in bullet-point above current to see how.
 
-## To get the content of [demo](https://demo.scandipwa.com/) site
+## Want to get the demo content?
 
 1. Stop the `app` container, using following command:
 
@@ -254,4 +254,14 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
             ```bash
             tar -zxvf scandipwa_media.tgz
             ```
+
+## Something does not work?
+
+Follow this simple algorithm:
+
+1. Refer to the [FAQ page](./faq.md). It most probably already has the solution to your problem.
+
+2. If the issue still persists, [join our community slack](https://scandipwa.com/community), and feel free to ask questions in `#pwa_tech` public channel.
+
+3. Alternatively [create an issue on GitHub](https://github.com/scandipwa/scandipwa-base/issues/new/choose) - however, the response time there will be a little-bit longer than in community Slack.
 
