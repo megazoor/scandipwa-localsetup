@@ -43,6 +43,12 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
     # use `inapp` to quickly get inside of the app container
     alias inapp="docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml exec -u user app"
+
+    # use `applogs` to quickly see the last 100 lines of app container logs
+    alias applogs="docker-compose logs -f --tail=100 app"
+
+    # use `frontlogs` to quickly see the last 100 lines of frontend container logs
+    alias frontlogs="docker-compose logs -f --tail=100 frontend"
     ```
 
     Those aliases are required to have all services available at all times. Otherwise, if just using `docker-compose` only services defined in `docker-composer.yml` will be available. Understand what services are available at all by reading [this part of our documentation](https://docs.scandipwa.com/#/docker/03-services?id=list-of-available-services).
@@ -103,19 +109,21 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
 2. Generate and trust a self-signed SSL certificate.
 
-    1. Begin with generating a certificate. It will appear in `<PATH TO PROJECT ROOT>/opt/cert/scandipwa-ca.pem`.
+    1. Begin with generating a certificate. Use the following command for that:
 
         ```bash
         make cert
         ```
 
-        > **Note**: you will be asked to type in the password 6 times. **This is NOT your root password**, this is a password for your certificate. This password must be at least 6 characters long.
+        > **Note**: you will be asked to type in the password 6 times. **This is NOT your host machine password**, this is a **NEW** password for your certificate. This password must be at least 6 characters long.
 
     2. Add certificate to the list of trusted ones. Use this [guide](https://manuals.gfi.com/en/kerio/connect/content/server-configuration/ssl-certificates/adding-trusted-root-certificates-to-the-server-1605.html) (or [guide for Arch linux](https://bbs.archlinux.org/viewtopic.php?pid=1776753#p1776753)) to do it. The `new-root-certificate.crt` / `foo.crt` from these guide examples must be replaced with `<PATH TO PROJECT ROOT>/opt/cert/scandipwa-ca.pem`.
 
-    3. Reload the Google Chrome. Sometimes, the Google Chrome caches the old-certificates. Make sure you have completely exited chrome, before opening it back. Sometimes, the "invalid certificate" issues only disappears after the full host machine reload.
+    3. Reload the Google Chrome. Sometimes, the Google Chrome caches the old-certificates. Make to completely exit chrome, before opening it back. Sometimes, the "invalid certificate" issues only disappears after the full host machine reload.
 
-3. Pull the images of all necessary containers
+3. Pull all necessary container images
+
+    > **Note**: `container image` != `media image`. Read more about [container images here](https://docs.docker.com/v17.09/engine/userguide/storagedriver/imagesandcontainers/).
 
     ```bash
     # if you have the alias set up
@@ -127,7 +135,7 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
 4. Start the infrastructure
 
-    > **Note**: There are two ways to use the setup, with `frontend` container, and without it. The setup with `frontend` container is called **development**. The alias running it is `dcf` the alias for production-like run is `dc`.
+    > **Note**: There are two ways to use the setup: with `frontend` container and without it. The setup with `frontend` container is called **development**. The alias running it is `dcf`, the alias for **production**-like run is `dc`.
 
     - For **production**-like setup:
 
@@ -148,3 +156,102 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
         # without aliases (not recommended)
         docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml up -d
         ```
+
+5. Wait until the infrastructure starts
+
+    - After the previous command is executed, the site won't be available quickly, it takes about 140s to start, you can see when the application is ready to receive the requests by watching `app` logs, using this command:
+
+        ```bash
+        # if you have the alias set up
+        applogs
+
+        # without aliases (not recommended)
+        docker-compose logs -f --tail=100 app
+        ```
+
+        If you can see following output, the application is ready!
+
+        ```bash
+        NOTICE: ready to handle connections
+        ```
+
+    - If you are using the **development** setup - the page will be available much faster, after the `frontend` container will compile a theme. You can track the progress using following command:
+
+        ```bash
+        # if you have the alias set up
+        frontlogs
+
+        # without aliases (not recommended)
+        docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml logs -f --tail=100 frontend
+        ```
+
+        If you can see following output, the frontend is ready!
+
+        ```bash
+        ℹ ｢wdm｣: Compiled successfully
+        ```
+
+        > **Note**: the requests to `/graphql` will still fail, you need to wait until the `app` container starts. See instruction in bullet-point above current to see how.
+
+## To get the content of [demo](https://demo.scandipwa.com/) site
+
+1. Stop the `app` container, using following command:
+
+    ```bash
+    # if you have the alias set up
+    dc stop app
+
+    # without aliases (not recommended)
+    docker-compose stop app
+    ```
+
+2. Drop the existing database
+
+    ```bash
+    docker-compose exec mysql mysql -u root -pscandipwa -e "DROP DATABASE magento; CREATE DATABASE magento;"
+    ```
+
+3. Import the demo site database dump
+
+    ```bash
+    docker-compose exec -T mysql mysql -u root -pscandipwa magento < deploy/latest.sql
+    ```
+
+4. Recreate the infrastructure
+
+    ```bash
+    docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml up -d --force-recreate
+    ```
+
+5. Get the media files
+
+    There are two options to get the media files - automatic (using wget), and manual.
+
+    - Get media files automatically
+
+        > **Note**: the following command requires you to have the `wget` binary available. To check if it is available, use following command:
+
+        ```bash
+        wget --version # should output version ^1
+        ```
+
+        If the `wget` command is not found, follow [this guide](https://www.tecmint.com/install-wget-in-linux/) to get it. Else, or after installation, execute following command to download & extract media:
+
+        <!-- TODO: TEST FOLLOWING COMMAND -->
+
+        ```bash
+        wget -c https://scandipwa-public-assets.s3-eu-west-1.amazonaws.com/2.2.x-media.tar.gz -O - | sudo tar -xz -C <PATH TO PROJECT ROOT>src/pub/media
+        ```
+
+    - Get media files manually
+
+        1. Download media files from [S3 bucket](https://scandipwa-public-assets.s3-eu-west-1.amazonaws.com/2.2.x-media.tar.gz)
+
+        2. Move archive into the `<PATH TO PROJECT ROOT>src/pub/media` folder
+
+        3. Extract the archive using following command:
+
+            ```bash
+            tar -zxvf scandipwa_media.tgz
+            ```
+
