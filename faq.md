@@ -48,7 +48,7 @@ _Stores > Configuration > Catalog > Catalog > Catalog Search > Search Engine_ an
 
 > **Note**, after the next deploy, this value will be switched back to `elasticsearch` as this setting is set during the deploy.
 
-### The nginx can not find `varnish` host
+## The nginx can not find `varnish` host
 
 Is a source of following problems:
 
@@ -66,7 +66,7 @@ docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compo
 docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml restart varnish
 ```
 
-### The `varnish` container is not working
+## The `varnish` container is not working
 
 Is a source of following problems:
 
@@ -82,7 +82,7 @@ dc restart varnish
 docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml restart varnish
 ```
 
-### The `app` container is not working
+## The `app` container is not working
 
 Is a source of following problems:
 
