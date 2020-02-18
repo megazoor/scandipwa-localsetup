@@ -252,3 +252,17 @@ docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compo
 ```
 
 </details>
+
+<details>
+<summary>The <code>index.php</code> in URL</summary>
+<br />
+
+This is common Magento issue. To resolve it, you need to go into Magento 2 admin. From there:
+
+1. Go to _Stores > Configuration > General > Web > Search Engine Optimization > Use Web Server Rewrites_ set them to `Yes`
+
+2. Go to _Stores > Configuration > General > Web > Base URLs_ check they end with `/`
+
+3. Go to _Stores > Configuration > General > Web > Base URLs_ (Secure) check they end with `/`
+
+</details>
