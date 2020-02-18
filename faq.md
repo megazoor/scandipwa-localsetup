@@ -1,6 +1,6 @@
 # FAQ
 
-<style>
+<!-- <style>
 /* Style like H3 */
 summary {
     margin-bottom: 1rem;
@@ -8,7 +8,7 @@ summary {
     font-size: 1.25em;
     /* font-weight: 600; */
 }
-</style>
+</style> -->
 
 In code examples, you might stumble across such declaration:
 
