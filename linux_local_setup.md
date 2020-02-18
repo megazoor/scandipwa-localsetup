@@ -193,7 +193,19 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
         > **Note**: the requests to `/graphql` will still fail, you need to wait until the `app` container starts. See instruction in bullet-point above current to see how.
 
+## How to access the site?
+
+1. Open your favorite browser
+
+2. Regardless of **production** or **development** setup go to [https://scandipwa.local](https://scandipwa.local)
+
+3. To access the Maildev, go to [http://scandipwa.local:1080/maildev](http://scandipwa.local:1080/maildev)
+
+4. To access the Kibana, go to [http://scandipwa.local:5601](http://scandipwa.local:5601)
+
 ## Want to get the demo content?
+
+To get the [demo.scandipwa.com](https://demo.scandipwa.com/) content (but without multi-store and languages) follow this step-by-step guide:
 
 1. Stop the `app` container, using following command:
 
