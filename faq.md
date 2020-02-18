@@ -266,3 +266,15 @@ This is common Magento issue. To resolve it, you need to go into Magento 2 admin
 3. Go to _Stores > Configuration > General > Web > Base URLs_ (Secure) check they end with `/`
 
 </details>
+
+<details>
+<summary>The <code>404</code> on homepage</summary>
+<br />
+
+If the homepage shows `404` - there could be mutiple reasons. Check following configurations:
+
+1. Go to _Stores > Configuration > General > Web > Default Pages > CMS Home Page_ and check if it is set
+
+2. Go to _Content > Pages_ make sure the column `Store View` is not empty for your Home Page CMS page. If it is empty, click on the page, select neccessary stores and click save (the stores might appear selected, igonre it).
+
+</details>
