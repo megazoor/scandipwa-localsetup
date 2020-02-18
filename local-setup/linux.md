@@ -275,7 +275,7 @@ To get the [demo.scandipwa.com](https://demo.scandipwa.com/) content (but withou
 
 Follow this simple algorithm:
 
-1. Refer to the [FAQ page](./faq.md). It most probably already has the solution to your problem.
+1. Refer to the [FAQ page](../faq.md). It most probably already has the solution to your problem.
 
 2. If the issue still persists, [join our community slack](https://scandipwa.com/community), and feel free to ask questions in `#pwa_tech` public channel.
 
