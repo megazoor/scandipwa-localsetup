@@ -141,21 +141,23 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
         ```bash
         # if you have the alias set up
-        dc up -d
+        dc up -d --remove-orphans
 
         # without aliases (not recommended)
-        docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml up -d
+        docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml up -d --remove-orphans
         ```
 
     - For **development** setup:
 
         ```bash
         # if you have the alias set up
-        dcf up -d
+        dcf up -d --remove-orphans
 
         # without aliases (not recommended)
-        docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml up -d
+        docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml up -d --remove-orphans
         ```
+
+    > **Note**: the `--remove-orphans` flag is neccessary to remove all left-over containers. In example, if you switched from **development** to **production** setup, the `frontend` container won't keep running.
 
 5. Wait until the infrastructure starts
 

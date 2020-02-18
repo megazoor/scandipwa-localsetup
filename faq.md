@@ -220,3 +220,35 @@ This indicates on:
 - the `COMPOSER_AUTH` might be valid JSON, but missing the `"repo.magento.com"` key in it. Again, refer to the instruction above to obtain tokens.
 
 </details>
+
+<details>
+<summary>The <code>orphans</code> warning</summary>
+<br />
+
+If the following waring appears during infrastracture run (using `up -d`):
+
+```bash
+WARNING: Found orphan containers (scandipwa-base_frontend_1) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+```
+
+This indicates you missed the `--remove-orphans` flag. Please run your setups using it, like so:
+
+```bash
+# if you have the alias set up
+dc up -d --remove-orphans
+
+# without aliases (not recommended)
+docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml up -d --remove-orphans
+```
+
+Or in **development** setup:
+
+```bash
+# if you have the alias set up
+dcf up -d --remove-orphans
+
+# without aliases (not recommended)
+docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml up -d --remove-orphans
+```
+
+</details>
