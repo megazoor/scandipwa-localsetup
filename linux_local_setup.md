@@ -195,9 +195,13 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
 ## How to access the site?
 
-1. Open your favorite browser
+1. Open your favorite browser, i.e. Google Chrome
 
 2. Regardless of **production** or **development** setup go to [https://scandipwa.local](https://scandipwa.local)
+
+    1. In **production** the Magento (`app` container) is fully responsible for what you see in browser
+
+    2. In **development** the webpack-dev-server (`frontend` container) is responsible for frontend, while `/media`, `/graphql`, `/admin` URLs are still coming from Magento.
 
 3. To access the Maildev, go to [http://scandipwa.local:1080/maildev](http://scandipwa.local:1080/maildev)
 
