@@ -12,7 +12,8 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 <br />
 
 <details>
-<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The <code>elasticsearch</code> is not working</summary>
+<summary>The <code>elasticsearch</code> is not working</summary>
+<br />
 
 Is a source of following problems:
 
@@ -63,7 +64,8 @@ _Stores > Configuration > Catalog > Catalog > Catalog Search > Search Engine_ an
 </details>
 
 <details>
-<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The nginx can not find <code>varnish</code> host</summary>
+<summary>The nginx can not find <code>varnish</code> host</summary>
+<br />
 
 Is a source of following problems:
 
@@ -83,7 +85,8 @@ docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compo
 </details>
 
 <details>
-<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The <code>varnish</code> container is not working</summary>
+<summary>The <code>varnish</code> container is not working</summary>
+<br />
 
 Is a source of following problems:
 
@@ -101,7 +104,8 @@ docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compo
 </details>
 
 <details>
-<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The <code>app</code> container is not working</summary>
+<summary>The <code>app</code> container is not working</summary>
+<br />
 
 Is a source of following problems:
 
@@ -143,7 +147,8 @@ Scroll those logs to the very top and see if any `error` appears. If it does, se
 
 </details>
 <details>
-<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The <code>composer</code> related issues</summary>
+<summary>The <code>composer</code> related issues</summary>
+<br />
 
 Inspect the `app` container logs, using following command:
 
