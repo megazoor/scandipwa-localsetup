@@ -1,15 +1,5 @@
 # FAQ
 
-<!-- <style>
-/* Style like H3 */
-summary {
-    margin-bottom: 1rem;
-    line-height: 1.25;
-    font-size: 1.25em;
-    /* font-weight: 600; */
-}
-</style> -->
-
 In code examples, you might stumble across such declaration:
 
 ```bash
@@ -19,8 +9,10 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
 > **Note**: the `<YOUR GITHUB USERNAME>` is not a literal text to keep, but the "template" to replace with the real value.
 
+<br />
+
 <details>
-<summary>The <code>elasticsearch</code> is not working</summary>
+<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The <code>elasticsearch</code> is not working</summary>
 
 Is a source of following problems:
 
@@ -71,7 +63,7 @@ _Stores > Configuration > Catalog > Catalog > Catalog Search > Search Engine_ an
 </details>
 
 <details>
-<summary>The nginx can not find <code>varnish</code> host</summary>
+<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The nginx can not find <code>varnish</code> host</summary>
 
 Is a source of following problems:
 
@@ -91,7 +83,7 @@ docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compo
 </details>
 
 <details>
-<summary>The <code>varnish</code> container is not working</summary>
+<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The <code>varnish</code> container is not working</summary>
 
 Is a source of following problems:
 
@@ -109,7 +101,7 @@ docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compo
 </details>
 
 <details>
-<summary>The <code>app</code> container is not working</summary>
+<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The <code>app</code> container is not working</summary>
 
 Is a source of following problems:
 
@@ -151,7 +143,7 @@ Scroll those logs to the very top and see if any `error` appears. If it does, se
 
 </details>
 <details>
-<summary>The <code>composer</code> related issues</summary>
+<summary style="margin-bottom: 1rem;line-height: 1.25;font-size: 1.25em;">The <code>composer</code> related issues</summary>
 
 Inspect the `app` container logs, using following command:
 
