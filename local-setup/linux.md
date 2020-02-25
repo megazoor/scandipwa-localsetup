@@ -32,7 +32,19 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
 
 4. Make sure the virtual memory `max map count` on your host machine is set high-enough. Follow [the instruction](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html#vm-max-map-count) to set it to appropriate level.
 
-5. To make your life easier, make sure to create an aliases for docker-compose commands. Follow [the guide](https://www.tecmint.com/create-alias-in-linux/) to create **permanent** aliases. We recommend defining following:
+5. To make your life easier, make sure to create **permanent** aliases for the docker-compose commands. 
+
+    5.1) Below describes how to paste the following commands into your **~/.bashrc** file. 
+    Open the file using vim editor. If vim is not installed: [download](https://www.vim.org/download.php)
+    
+
+    ```bash
+    $ vim ~/.bashrc
+    ```
+
+    5.2) Once vim editor is opened press ESC and then press capital 'G', you will see your cursor move to end of file in your vim editor. 
+    You can then press the letter I to insert and ctrl+v the commands below. 
+    Once pasted, press ESC followed by pressing : then type wq! - wq = write+quit!
 
     ```bash
     # use `dc` to start without `frontend` container
@@ -51,7 +63,13 @@ git clone git@github.com:<YOUR GITHUB USERNAME>/scandipwa-base.git
     alias frontlogs="docker-compose logs -f --tail=100 frontend"
     ```
 
-    Those aliases are required to have all services available at all times. Otherwise, if just using `docker-compose` only services defined in `docker-composer.yml` will be available. Understand what services are available at all by reading [this part of our documentation](https://docs.scandipwa.com/#/docker/03-services?id=list-of-available-services).
+    5.3) If you have pasted the above commands in ~/.bashrc and saved the file you then need to run source in order for your linux OS to recognize the changes made.
+
+    ```bash
+    $ source ~/.bashrc
+    ```
+
+    The above aliases are required to have all services available at all times. Otherwise, if just using `docker-compose` only services defined in `docker-composer.yml` will be available. Understand what services are available at all by reading [this part of our documentation](https://docs.scandipwa.com/#/docker/03-services?id=list-of-available-services).
 
 6. Make sure you have a valid Magento 2 `COMPOSER_AUTH` set. This is an environment variable set on your host machine. To test if it is set, use:
 
